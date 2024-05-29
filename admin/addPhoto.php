@@ -3,7 +3,7 @@ include_once('includes/loginChecker.php');
 include_once('includes/conn.php');
 // Fetch tags from the database
 try {
-	$sql = 'SELECT * FROM `tags`';
+	$sql = 'SELECT * FROM  `tags`';
 	$stmt = $conn->prepare($sql);
 	$stmt->execute();
 	$result4 = $stmt->fetchAll();
@@ -25,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 		// Include file upload handling
 		include_once('includes/upload.php');
-		$sql = 'INSERT INTO `catalog`(`title`, `license`, `dimension`, `format`, `active`, `image`, `tag_id`, `date`) VALUES (?,?,?,?,?,?,?,?)';
+		$sql = 'INSERT INTO `catalog`(`title`, `license`, `dimension`, `format`, `active`, `image`, `tag_id`, `date`) 
+		VALUES (?,?,?,?,?,?,?,?)';
 		$stmt = $conn->prepare($sql);
 		$stmt->execute([$title, $license, $dimension, $format, $active, $image_name, $tag_id, $date]);
 		// echo "Your data inserted successfuly :)";
@@ -34,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		header('location: photos.php');
 	} catch (PDOException $e) {
 		echo $e->getMessage();
-
 	}
 }
 

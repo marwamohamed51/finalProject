@@ -16,7 +16,6 @@ if (!empty($_POST['register'])) {
 
         } catch (PDOException $e) {
             echo $e->getMessage();
-
         }
     }
 }
